@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/controllers/controlle_home_page.dart';
 import 'package:flutter_app/utils/colors_standard.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Header extends StatefulWidget {
@@ -19,16 +21,16 @@ class _HeaderState extends State<Header> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _Profile(),
-            ],
-          )
+            children: [_profile(), _options()],
+          ),
+          const SizedBox(height: 12),
+          _welcome(),
         ],
       ),
     );
   }
 
-  _Profile() {
+  _profile() {
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -36,6 +38,7 @@ class _HeaderState extends State<Header> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80), color: secondaryPurple),
         child: IconButton(
+          color: Colors.white,
           onPressed: () {},
           icon: const Icon(
             MdiIcons.accountOutline,
@@ -48,13 +51,19 @@ class _HeaderState extends State<Header> {
   _options() {
     return Row(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            MdiIcons.eyeOutline,
-            color: Colors.white,
-          ),
-        ),
+        GetBuilder<ControllerHomePage>(
+            init: ControllerHomePage(),
+            builder: (ControllerHomePage) {
+              return IconButton(
+                onPressed: () => ControllerHomePage.showValue(),
+                icon: Icon(
+                  ControllerHomePage.eyesValue
+                      ? MdiIcons.eyeOutline
+                      : MdiIcons.eyeOff,
+                  color: Colors.white,
+                ),
+              );
+            }),
         IconButton(
           onPressed: () {},
           icon: const Icon(
@@ -62,7 +71,25 @@ class _HeaderState extends State<Header> {
             color: Colors.white,
           ),
         ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.person_add_alt_1_outlined,
+            color: Colors.white,
+          ),
+        ),
       ],
+    );
+  }
+
+  _welcome() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, bottom: 20),
+      child: const Text(
+        'Olá, Brian',
+        style: TextStyle(
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
+      ),
     );
   }
 }

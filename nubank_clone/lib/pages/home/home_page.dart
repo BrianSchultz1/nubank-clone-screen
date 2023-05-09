@@ -33,6 +33,7 @@ class HomePageState extends State<HomePage> {
     return PreferredSize(
       preferredSize: const Size.fromHeight(0),
       child: AppBar(
+        backgroundColor: backgroundColor,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
