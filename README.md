@@ -17,6 +17,4 @@ Tecnologias Utilizadas:
 Recursos:
 
     Controle de gastos diários
-    Introdução à educação financeira
-    Interface fácil de usar e escalável
- 
+    Interface fácil de usar
